@@ -1,0 +1,82 @@
+package com.Rushi;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+public class DbUtil {
+
+	public static Connection getConnection()
+	{
+		Connection con=null;
+		try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        con=DriverManager.getConnection("jdbc:mysql://localhost:3306/CurdS_J", "root", "root");
+		}catch (Exception e) 
+		{
+			System.out.println(e);
+		}
+		
+		return con;
+	}
+	
+	public static void insertEmployee(Employee emp) 
+	{   
+		String name=emp.getName();
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		try
+		{
+		 ps=con.prepareStatement("insert into emp(name) values(?)");
+		 ps.setString(1,name);
+		 ps.execute();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
+//		finally
+//		{
+//		 try {
+//			    ps.close();
+//				con.close();
+//		 }catch (Exception e) {
+//			System.out.println(e);
+//		}
+//			
+//		}
+	}
+	 
+	public static void deleteEmployee(int id)
+	{
+		
+		Connection con=getConnection();
+		PreparedStatement ps=null;
+		try
+		{
+		ps=con.prepareStatement("delete from emp where id=?;");
+		ps.setInt(1,id);
+		ps.execute();
+		}catch (Exception e) {
+			System.out.println(e);
+		}
+//		finally {
+//			try {
+//				ps.close();
+//				con.close();
+//			} catch (Exception e2) {
+//			System.out.println(e2);
+//			}
+		//}
+	}
+	public static void main(String[] args)  {
+//		Employee emp=new Employee();
+//		emp.setName("PK");
+//		insertEmployee(emp);
+		DbUtil .deleteEmployee(2);
+		System.out.println("Successfull!!");
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Program for DataBase Operations</h2>
+<a href ="insert.html">Click here for insert operation</a><br><br>
+<a href ="delete.html">Click here  for Delete operation</a><br><br>
+<a href ="display.html">Click here for Display opetion</a><b></b>
+
+</body>
+</html>
